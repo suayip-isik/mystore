@@ -1,28 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text } from 'react-native'
+import React from 'react'
+import { View, Text, ActivityIndicator } from 'react-native'
 import styles from "./Products.style";
 import Config from 'react-native-config';
 import { FlatList } from 'react-native';
-import axios from 'axios';
 import ProductCard from '../../components/ProductCard';
+import useFetch from '../../hooks/useFetch';
 
 const Products = () => {
-    const [data, setData] = useState([])
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    const fetchData = async () => {
-        try {
-            const { data: responseData } = await axios.get(Config.API_URL)
-            setData(responseData)
-        } catch (e) {
-
-        }
-    }
+    const { error, loading, data } = useFetch(Config.API_URL);
 
     const renderProduct = ({ item }) => <ProductCard product={item} />
+
+    if (loading) {
+        return <ActivityIndicator size={"large"} />;
+    }
+
+    if (error) {
+        return <Text>Bir hata oluştu...</Text>
+    }
+
     return (
         <View>
             <FlatList data={data} renderItem={renderProduct} />
