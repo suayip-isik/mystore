@@ -1,11 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import styles from "./Detail.style";
 
-const Detail = () => {
+const Detail = ({ route }) => {
+    const { item } = route.params
+    console.log(item);
     return (
-        <View>
-            <Text>Detail</Text>
+        <View style={styles.container}>
+            <Image style={styles.image} />
+            <Text style={styles.title}>Title</Text>
+            <Text style={styles.desc}>desc</Text>
+            <Text style={styles.price}>price</Text>
         </View>
     )
 }
