@@ -1,10 +1,12 @@
 import React from 'react'
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View } from 'react-native'
 import styles from "./Products.style";
 import Config from 'react-native-config';
 import { FlatList } from 'react-native';
 import ProductCard from '../../components/ProductCard';
 import useFetch from '../../hooks/useFetch';
+import Loading from '../../components/Loading';
+import Error from '../../components/Error';
 
 const Products = () => {
 
@@ -13,11 +15,11 @@ const Products = () => {
     const renderProduct = ({ item }) => <ProductCard product={item} />
 
     if (loading) {
-        return <ActivityIndicator size={"large"} />;
+        return <Loading />
     }
 
     if (error) {
-        return <Text>Bir hata oluştu...</Text>
+        return <Error />
     }
 
     return (
