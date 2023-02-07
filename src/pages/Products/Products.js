@@ -12,7 +12,7 @@ const Products = ({ navigation }) => {
 
     const { error, loading, data } = useFetch(Config.API_URL);
 
-    const handleProductSelect = (item) => navigation.navigate("DetailPage", { item })
+    const handleProductSelect = (data) => navigation.navigate("DetailPage", { data })
 
     const renderProduct = ({ item }) => <ProductCard product={item} onSelect={() => handleProductSelect(item)} />
 

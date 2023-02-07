@@ -3,14 +3,15 @@ import React from 'react'
 import styles from "./Detail.style";
 
 const Detail = ({ route }) => {
-    const { item } = route.params
-    console.log(item);
+    const { data } = route.params
     return (
         <View style={styles.container}>
-            <Image style={styles.image} />
-            <Text style={styles.title}>Title</Text>
-            <Text style={styles.desc}>desc</Text>
-            <Text style={styles.price}>price</Text>
+            <Image source={{ uri: data.image }} style={styles.image} />
+            <View style={styles.bodyContainer}>
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.desc}>{data.description}</Text>
+            <Text style={styles.price}>{data.price}₺</Text>
+            </View>
         </View>
     )
 }
