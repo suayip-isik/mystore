@@ -23,14 +23,17 @@ const Login = () => {
                     ({ handleChange, handleSubmit, values }) => (
                         <View style={styles.bodyContainer}>
                             <Input
+                                iconName={'account'}
                                 placeholder="Kullanıcı adınızı giriniz..."
                                 value={values.username}
                                 onChangeText={handleChange("username")} />
 
                             <Input
+                                iconName={'key'}
                                 placeholder="Şifrenizi giriniz..."
                                 value={values.password}
-                                onChangeText={handleChange("password")} />
+                                onChangeText={handleChange("password")}
+                                isSecure />
 
                             <Button text={"Giriş yap"} onPress={handleSubmit} />
                         </View>
