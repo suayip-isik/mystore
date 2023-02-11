@@ -10,7 +10,7 @@ import Error from '../../components/Error';
 
 const Products = ({ navigation }) => {
 
-    const { error, loading, data } = useFetch(Config.API_URL);
+    const { error, loading, data } = useFetch(Config.API_PRODUCT_URL);
 
     const handleProductSelect = (data) => navigation.navigate("DetailPage", { data })
 

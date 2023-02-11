@@ -1,15 +1,32 @@
 import React from 'react'
-import { View, Text, SafeAreaView, Image } from 'react-native'
+import { View, SafeAreaView, Image } from 'react-native'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styles from "./Login.style";
 import { Formik } from 'formik';
+import usePost from '../../hooks/usePost';
+import Config from 'react-native-config';
 
 const Login = () => {
+    const { data, loading, error, post } = usePost();
+
+    /*
+    username:johnd
+    password:m38rmF$
+    */
 
     const handleLogin = (values) => {
-        console.log(values);
+        post(Config.API_AUTH_URL + '/login', values)
+        console.log(data);
     }
+
+    // if (data) {
+    //     console.log(data);
+    // }
+
+    // if (error) {
+    //     console.log(error);
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -33,18 +50,14 @@ const Login = () => {
                                 placeholder="Şifrenizi giriniz..."
                                 value={values.password}
                                 onChangeText={handleChange("password")}
-                                isSecure />
+                                isSecure
+                            />
 
-                            <Button text={"Giriş yap"} onPress={handleSubmit} />
+                            <Button text={"Giriş yap"} onPress={handleSubmit} loading={loading} />
                         </View>
                     )
                 }
             </Formik>
-            {/* <View style={styles.bodyContainer}>
-                <Input placeholder="Kullanıcı adınızı giriniz..." />
-                <Input placeholder="Şifrenizi giriniz..." />
-                <Button text={"Giriş yap"} />
-            </View> */}
         </SafeAreaView>
     )
 }
